@@ -24,6 +24,15 @@ function mostrarLeccionesJavaScript() {
   );
 }
 
+function LeerLibroJavascript() {
+  alert(
+    "En JavaScript, los paréntesis () en las funciones tienen dos propósitos principales:\n" +
+      "Al definir una función: se usan para declarar los parámetros (los datos que la función puede recibir).\n" +
+      "Al llamar a una función: se usan para pasar argumentos (los valores concretos que se envían a la función).\n" +
+      "Pero hay una tercera situación: cuando una función no tiene parámetros, igualmente se usan los paréntesis (vacíos) tanto en la definición como en la llamada.\n\n"
+  );
+}
+
 function jugar() {
   // Función para mostrar el estado actual del jugador...Dentro de una template string, los símbolos ${ ... } te permiten insertar variables o expresiones directamente dentro del texto.
   function mostrarEstado() {
@@ -110,7 +119,14 @@ function jugar() {
 
     if (decision === "1") {
       energia -= 50;
-      alert("costo mucho subir! pierdes la mitad de tu energia");
+      if (energia <= 0) {
+        alert("Te has quedado sin energia. sientate a leer");
+        LeerLibroJavascript();
+        energia += 100;
+      } else {
+        alert("costo mucho subir! pierdes la mitad de tu energia");
+      }
+
       escenaMontania();
     } else if (decision === "2") {
       escenaCueva();
