@@ -148,7 +148,7 @@ function jugar() {
           alert(
             "No tienes una antorcha en tu inventario. Busca una en la cabaña."
           );
-          // En lugar de no hacer nada, volvemos a mostrar la escena de la cueva para que el jugador elija otra opción.
+          //  volvemos a mostrar la escena de la cueva para que el jugador elija otra opción.
           escenaCueva();
         }
         break;
