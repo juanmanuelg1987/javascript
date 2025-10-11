@@ -3,36 +3,6 @@ let vida = 100;
 let energia = 100;
 let inventario = "";
 
-//esta funcion es el mensaje final, que va a ser llamado al completar el juego con la antorcha
-//SE LLAMA  FACIL... mostrarLeccionesJavaScript()
-
-function mostrarLeccionesJavaScript() {
-  alert(
-    " LECCIONES DE JAVASCRIPT \n\n" +
-      " BREAK:\n" +
-      "   - Se usa en bucles (for, while) y switch.\n" +
-      "   - Termina la ejecución del bucle o switch.\n\n" +
-      " FUNCTION:\n" +
-      "   - Bloque de código que realiza una tarea.\n" +
-      "   - Se define con 'function nombre() {}'.\n" +
-      "   - Puede recibir parámetros y retornar valores.\n\n" +
-      " LET:\n" +
-      "   - Declara variables con alcance de bloque.\n" +
-      "   - A diferencia de 'var', no sale del bloque.\n" +
-      "   - Ideal para bucles y bloques if.\n\n" +
-      "¡A seguir practicando JavaScript!"
-  );
-}
-
-function LeerLibroJavascript() {
-  alert(
-    "En JavaScript, los paréntesis () en las funciones tienen dos propósitos principales:\n" +
-      "Al definir una función: se usan para declarar los parámetros (los datos que la función puede recibir).\n" +
-      "Al llamar a una función: se usan para pasar argumentos (los valores concretos que se envían a la función).\n" +
-      "Pero hay una tercera situación: cuando una función no tiene parámetros, igualmente se usan los paréntesis (vacíos) tanto en la definición como en la llamada.\n\n"
-  );
-}
-
 function jugar() {
   // Función para mostrar el estado actual del jugador...Dentro de una template string, los símbolos ${ ... } te permiten insertar variables o expresiones directamente dentro del texto.
   function mostrarEstado() {
@@ -227,7 +197,7 @@ function jugar() {
             alert(
               "No tomas ninguna decisión clara y te pierdes en la oscuridad."
             );
-            escenaCueva();
+            mostrarEstado();
           }
         }
         break;
@@ -317,42 +287,33 @@ function jugar() {
         "¡Correcto! Cruzas el acantilado del SABER y adquieres el TESORO Del Aprendiz."
       );
 
-      // Preguntar si quiere buscar el tesoro en la cueva
-      let buscarCueva = prompt(
-        "¡FELICIDADES, HAS GANADO!\n\n" +
-          "Pero espera... Has escuchado rumores sobre un tesoro legendario\n" +
-          "escondido en la Cueva de la Sabiduría.\n\n" +
-          "¿Te gustaría buscar el tesoro dentro de la Cueva?\n\n" +
-          "1. Sí, buscar el tesoro legendario\n" +
-          "2. No, terminar el juego\n\n" +
-          "Elige opción:"
-      );
-
-      if (buscarCueva === "1") {
-        alert(
-          "Decides aventurarte en busca del tesoro legendario.\n" +
-            "Regresas al pie de la montaña para buscar la entrada a la cueva..."
+      // Bucle infinito que solo se rompe con respuestas válidas
+      while (true) {
+        let buscarCueva = prompt(
+          "¡FELICIDADES, HAS GANADO!\n\n" +
+            "Pero espera... Has escuchado rumores sobre un tesoro legendario\n" +
+            "escondido en la Cueva de la Sabiduría.\n\n" +
+            "¿Te gustaría buscar el tesoro dentro de la Cueva?\n\n" +
+            "1. Sí, buscar el tesoro legendario\n" +
+            "2. No, terminar el juego\n\n" +
+            "Elige opción:"
         );
-        escenaPieMontania();
-      } else if (buscarCueva === "2" || buscarCueva === null) {
-        alert("Has decidido terminar tu aventura. ¡Bien jugado!");
-        finalizarJuego();
-      } else {
-        alert("Opción inválida.");
-        // Si pone algo inválido, pregunta de nuevo
-        escenaAcantilado();
+
+        if (buscarCueva === "1") {
+          alert("Decides aventurarte en busca del tesoro legendario...");
+          escenaPieMontania();
+          break; // ← Rompe el bucle
+        } else if (buscarCueva === "2" || buscarCueva === null) {
+          alert("Has decidido terminar tu aventura. ¡Bien jugado!");
+          finalizarJuego();
+          break; // ← Rompe el bucle
+        } else {
+          alert("Opción inválida. Por favor elige 1 o 2.");
+          // No hay break, así que el bucle continúa
+        }
       }
-    } else if (acertijo === null) {
-      // Si cancela, vuelve al menú
-      alert("Decides retirarte del acantilado.");
-      escenaPieMontania();
-    } else {
-      alert(
-        "Respuesta incorrecta. No logras cruzar el acantilado del SABER y debes regresar."
-      );
-      escenaPieMontania();
     }
-  }
+  } // <-- Añadir esta llave para cerrar escenaAcantilado()
   //FINALIZA
 
   function finalizarJuego() {
@@ -374,3 +335,37 @@ function jugar() {
 
 // Comenzar el juego
 jugar();
+
+//esta funcion es el mensaje final, que va a ser llamado al completar el juego con la antorcha
+//SE LLAMA  FACIL... mostrarLeccionesJavaScript()
+
+//alert() = ejemplo..."¡MIRA esto!" 👀
+
+//prompt() = ejemplo...  "¿Qué piensas?" 💭
+
+function mostrarLeccionesJavaScript() {
+  alert(
+    " LECCIONES DE JAVASCRIPT \n\n" +
+      " BREAK:\n" +
+      "   - Se usa en bucles (for, while) y switch.\n" +
+      "   - Termina la ejecución del bucle o switch.\n\n" +
+      " FUNCTION:\n" +
+      "   - Bloque de código que realiza una tarea.\n" +
+      "   - Se define con 'function nombre() {}'.\n" +
+      "   - Puede recibir parámetros y retornar valores.\n\n" +
+      " LET:\n" +
+      "   - Declara variables con alcance de bloque.\n" +
+      "   - A diferencia de 'var', no sale del bloque.\n" +
+      "   - Ideal para bucles y bloques if.\n\n" +
+      "¡A seguir practicando JavaScript!"
+  );
+}
+
+function LeerLibroJavascript() {
+  alert(
+    "En JavaScript, los paréntesis () en las funciones tienen dos propósitos principales:\n" +
+      "Al definir una función: se usan para declarar los parámetros (los datos que la función puede recibir).\n" +
+      "Al llamar a una función: se usan para pasar argumentos (los valores concretos que se envían a la función).\n" +
+      "Pero hay una tercera situación: cuando una función no tiene parámetros, igualmente se usan los paréntesis (vacíos) tanto en la definición como en la llamada.\n\n"
+  );
+}
