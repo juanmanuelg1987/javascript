@@ -36,7 +36,7 @@ function jugar() {
 
   function menuPrincipal() {
     let opcion = prompt(
-      "=== MENÚ PRINCIPAL ===\n" +
+      "=== EN BUSQUEDA DEL TESORO ===\n" +
         "1. Comenzar nueva partida\n" +
         "2. Cargar partida desde texto\n" +
         "3. Salir\n\n" +
@@ -109,6 +109,8 @@ function jugar() {
     );
 
     if (decision === "1") {
+      energia -= 50;
+      alert("costo mucho subir! pierdes la mitad de tu energia");
       escenaMontania();
     } else if (decision === "2") {
       escenaCueva();
@@ -123,7 +125,7 @@ function jugar() {
   function escenaMontania() {
     let opcion = prompt(
       mostrarEstado() +
-        "Has subido la montaña. Ves una cabaña:\n" +
+        "Has subido al medio de la montaña. Ves una cabaña:\n" +
         "1. Seguir subiendo\n" +
         "2. Ingresar a la cabaña\n" +
         "3. Regresar\n\n" +
@@ -279,7 +281,6 @@ function jugar() {
   }
 
   //ACANTILADO
-
   function escenaAcantilado() {
     alert(
       "Llegaste a un acantilado. Para cruzarlo debes resolver un acertijo:"
@@ -299,8 +300,36 @@ function jugar() {
       alert(
         "¡Correcto! Cruzas el acantilado del SABER y adquieres el TESORO Del Aprendiz."
       );
-      alert("¡FELICIDADES, HAS GANADO!");
-      finalizarJuego();
+
+      // Preguntar si quiere buscar el tesoro en la cueva
+      let buscarCueva = prompt(
+        "¡FELICIDADES, HAS GANADO!\n\n" +
+          "Pero espera... Has escuchado rumores sobre un tesoro legendario\n" +
+          "escondido en la Cueva de la Sabiduría.\n\n" +
+          "¿Te gustaría buscar el tesoro dentro de la Cueva?\n\n" +
+          "1. Sí, buscar el tesoro legendario\n" +
+          "2. No, terminar el juego\n\n" +
+          "Elige opción:"
+      );
+
+      if (buscarCueva === "1") {
+        alert(
+          "Decides aventurarte en busca del tesoro legendario.\n" +
+            "Regresas al pie de la montaña para buscar la entrada a la cueva..."
+        );
+        escenaPieMontania();
+      } else if (buscarCueva === "2" || buscarCueva === null) {
+        alert("Has decidido terminar tu aventura. ¡Bien jugado!");
+        finalizarJuego();
+      } else {
+        alert("Opción inválida.");
+        // Si pone algo inválido, pregunta de nuevo
+        escenaAcantilado();
+      }
+    } else if (acertijo === null) {
+      // Si cancela, vuelve al menú
+      alert("Decides retirarte del acantilado.");
+      escenaPieMontania();
     } else {
       alert(
         "Respuesta incorrecta. No logras cruzar el acantilado del SABER y debes regresar."
@@ -308,7 +337,6 @@ function jugar() {
       escenaPieMontania();
     }
   }
-
   //FINALIZA
 
   function finalizarJuego() {
