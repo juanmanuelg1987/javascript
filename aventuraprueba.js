@@ -1,28 +1,80 @@
-// === JUEGO INTERACTIVO - SIN BUCLES WHILE ===
-
 let nombre = "";
 let vida = 100;
 let energia = 100;
 let inventario = "";
 
+//esta funcion es el mensaje final, que va a ser llamado al completar el juego con la antorcha
+//SE LLAMA  FACIL... mostrarLeccionesJavaScript()
+
+function mostrarLeccionesJavaScript() {
+  alert(
+    " LECCIONES DE JAVASCRIPT \n\n" +
+      " BREAK:\n" +
+      "   - Se usa en bucles (for, while) y switch.\n" +
+      "   - Termina la ejecución del bucle o switch.\n\n" +
+      " FUNCTION:\n" +
+      "   - Bloque de código que realiza una tarea.\n" +
+      "   - Se define con 'function nombre() {}'.\n" +
+      "   - Puede recibir parámetros y retornar valores.\n\n" +
+      " LET:\n" +
+      "   - Declara variables con alcance de bloque.\n" +
+      "   - A diferencia de 'var', no sale del bloque.\n" +
+      "   - Ideal para bucles y bloques if.\n\n" +
+      "¡A seguir practicando JavaScript!"
+  );
+}
+
 function jugar() {
+  // Función para mostrar el estado actual del jugador...Dentro de una template string, los símbolos ${ ... } te permiten insertar variables o expresiones directamente dentro del texto.
+  function mostrarEstado() {
+    return `\n--- ESTADO ACTUAL ---\nVida: ${vida} | Energía: ${energia} | Inventario: ${
+      inventario || "Nada"
+    }\n----------------------\n`;
+  }
+
+  //COMIENZO
+
   function menuPrincipal() {
     let opcion = prompt(
       "=== MENÚ PRINCIPAL ===\n" +
-        "1. Comenzar\n" +
-        "2. Salir\n\n" +
+        "1. Comenzar nueva partida\n" +
+        "2. Cargar partida desde texto\n" +
+        "3. Salir\n\n" +
         "Elige opción:"
     );
 
     if (opcion === "1") {
       escenaInicio();
-    } else if (opcion === "2" || opcion === null) {
+    } else if (opcion === "2") {
+      let texto = prompt("Pega el texto de tu partida guardada (JSON):");
+
+      if (texto) {
+        try {
+          let datos = JSON.parse(texto); // Convierte texto plano a objeto, si coincide te manda a escena pie de montaña
+          nombre = datos.nombre;
+          vida = datos.vida;
+          energia = datos.energia;
+          inventario = datos.inventario;
+
+          alert(`🔄 Partida cargada. Bienvenido de nuevo, ${nombre}.`);
+          escenaPieMontania();
+        } catch (error) {
+          alert(" Error: el texto no es válido. Verifica que esté completo.");
+          menuPrincipal();
+        }
+      } else {
+        alert("No pegaste ningún texto.");
+        menuPrincipal();
+      }
+    } else if (opcion === "3" || opcion === null) {
       alert("¡Gracias por jugar! Hasta pronto.");
     } else {
       alert("Opción inválida");
       menuPrincipal();
     }
   }
+
+  //EL PROMPT cuadro de diálogo que pregunta el nombre
 
   function escenaInicio() {
     nombre = prompt(
@@ -32,9 +84,12 @@ function jugar() {
     if (nombre === null) {
       menuPrincipal();
     } else if (nombre === "") {
+      // Si el usuario no escribió nada y presionó Aceptar
       alert("Debes ingresar un nombre.");
       escenaInicio();
-    } else {
+    }
+    //Nombre valido - Continuar con el juego
+    else {
       alert(
         `¡Perfecto, ${nombre}! Comienzas con ${vida} de vida y ${energia} de energía.`
       );
@@ -42,9 +97,12 @@ function jugar() {
     }
   }
 
+  //ESCENA PIE DE MONTAÑA
+
   function escenaPieMontania() {
     let decision = prompt(
-      `${nombre}, te encuentras al pie de una montaña:\n` +
+      mostrarEstado() +
+        `${nombre}, te encuentras al pie de una montaña:\n` +
         "1. Subir la montaña\n" +
         "2. Ingresar a la cueva\n\n" +
         "Elige opción:"
@@ -60,9 +118,12 @@ function jugar() {
     }
   }
 
+  //ESCENA MONTAÑA
+
   function escenaMontania() {
     let opcion = prompt(
-      "Has subido la montaña. Ves una cabaña:\n" +
+      mostrarEstado() +
+        "Has subido la montaña. Ves una cabaña:\n" +
         "1. Seguir subiendo\n" +
         "2. Ingresar a la cabaña\n" +
         "3. Regresar\n\n" +
@@ -81,15 +142,17 @@ function jugar() {
     }
   }
 
+  //CUEVA
+
   function escenaCueva() {
     let mensaje =
+      mostrarEstado() +
       "Estás en una cueva oscura:\n" +
       "1. Encender antorcha" +
       (inventario === "antorcha" ? " (Disponible)" : " (No disponible)") +
       "\n" +
       "2. Ingresar a ciegas\n" +
       "3. Salir\n\n" +
-      `Vida actual: ${vida} | Energía: ${energia}\n` +
       "Elige opción:";
 
     let opcion = prompt(mensaje);
@@ -100,12 +163,14 @@ function jugar() {
           alert(
             "¡Enciendes la antorcha! La cueva se ilumina y revela un tesoro brillante."
           );
-          alert("¡FELICIDADES, HAS GANADO EL JUEGO!");
+          alert("¡FELICIDADES, elegiste el mejor camino!");
+          mostrarLeccionesJavaScript();
           finalizarJuego();
         } else {
           alert(
             "No tienes una antorcha en tu inventario. Busca una en la cabaña."
           );
+          // En lugar de no hacer nada, volvemos a mostrar la escena de la cueva para que el jugador elija otra opción.
           escenaCueva();
         }
         break;
@@ -114,7 +179,8 @@ function jugar() {
         vida -= 30;
         energia -= 15;
         alert(
-          "Avanzas a ciegas y tropiezas con una roca.\n¡Pierdes 30 de vida y 15 de energía!"
+          mostrarEstado() +
+            "Avanzas a ciegas y tropiezas con una roca.\n¡Pierdes 30 de vida y 15 de energía!"
         );
 
         if (vida <= 0) {
@@ -122,7 +188,8 @@ function jugar() {
           finalizarJuego();
         } else {
           let direccion = prompt(
-            "Escuchas dos pasajes:\n" +
+            mostrarEstado() +
+              "Escuchas dos pasajes:\n" +
               "1. Ir hacia sonidos de agua (izquierda)\n" +
               "2. Ir hacia una brisa fresca (derecha)\n\n" +
               "¿Hacia dónde vas?"
@@ -159,14 +226,20 @@ function jugar() {
     }
   }
 
+  //CABAÑA
+
   function escenaCabania() {
     alert(
       "Entras a la cabaña y la puerta se cierra detrás de ti. Estás atrapado."
     );
     let respuesta = prompt(
-      "Para salir debes resolver esta adivinanza:\n\n" +
-        "'Cuando quieras mostrar un mensaje en tu página,yo soy la función que te da el mensaje.No soy console.log, que en la consola se queda,yo aparezco en una ventanita que se vea'\n\n" +
-        "1. Prompt \n" +
+      mostrarEstado() +
+        "Para salir debes resolver esta adivinanza:\n\n" +
+        "'Cuando quieras mostrar un mensaje en tu página,\n" +
+        "yo soy la función que te da el mensaje.\n" +
+        "No soy console.log, que en la consola se queda,\n" +
+        "yo aparezco en una ventanita que se vea.'\n\n" +
+        "1. Prompt\n" +
         "2. Alert\n\n" +
         "Elige tu respuesta:"
     );
@@ -174,7 +247,29 @@ function jugar() {
     if (respuesta === "2") {
       alert("¡Correcto! Obtienes una antorcha y la llave para salir.");
       inventario = "antorcha";
-      escenaMontania();
+
+      // === GUARDAR PARTIDA EN TEXTO PLANO ===
+      // Creamos un objeto con el progreso actual
+      // === GUARDAR PARTIDA EN TEXTO PLANO ===
+      let progreso = {
+        nombre: nombre,
+        vida: vida,
+        energia: energia,
+        inventario: inventario,
+      };
+      //aca viene lo importante texto plano igual a json.stringify
+      let textoPartida = JSON.stringify(progreso);
+
+      // Mostrar en un prompt para que sea seleccionable
+      alert(
+        "✅ ¡Partida guardada!\n\nEn la siguiente ventana verás el texto de tu partida.\nSelecciónalo TODO y cópialo (Ctrl+C o Cmd+C)."
+      );
+
+      prompt("Copia este texto (Ctrl+C o Cmd+C) y guárdalo:", textoPartida);
+
+      // Mostrar estado actualizado
+      alert(mostrarEstado() + "¡Ahora tienes una antorcha en tu inventario!");
+      escenaPieMontania();
     } else {
       alert(
         "Respuesta incorrecta. Te quedas atrapado en la cabaña. ¡PERDISTE!"
@@ -183,13 +278,18 @@ function jugar() {
     }
   }
 
-  // ...existing code...
+  //ACANTILADO
+
   function escenaAcantilado() {
     alert(
       "Llegaste a un acantilado. Para cruzarlo debes resolver un acertijo:"
     );
     let acertijo = prompt(
-      "'Antes de mí, solo var existía, pero yo llegué para mejorar tu día, Soy la mejor manera de declarar, y en el bloque me debo quedar.'\n\n" +
+      mostrarEstado() +
+        "'Antes de mí, solo var existía,\n" +
+        "pero yo llegué para mejorar tu día.\n" +
+        "Soy la mejor manera de declarar,\n" +
+        "y en el bloque me debo quedar.'\n\n" +
         "1. let\n" +
         "2. const\n\n" +
         "Elige tu respuesta:"
@@ -197,18 +297,19 @@ function jugar() {
 
     if (acertijo === "1") {
       alert(
-        "¡Correcto! Cruzas el acantilado del saber y adquieres el TESORO Del Aprendiz."
+        "¡Correcto! Cruzas el acantilado del SABER y adquieres el TESORO Del Aprendiz."
       );
       alert("¡FELICIDADES, HAS GANADO!");
       finalizarJuego();
     } else {
       alert(
-        "Respuesta incorrecta. No logras cruzar el acantilado del saber y debes regresar."
+        "Respuesta incorrecta. No logras cruzar el acantilado del SABER y debes regresar."
       );
       escenaPieMontania();
     }
   }
-  // ...existing code...
+
+  //FINALIZA
 
   function finalizarJuego() {
     if (confirm("¿Quieres jugar otra vez?")) {
