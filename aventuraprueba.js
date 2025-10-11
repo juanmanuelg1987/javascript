@@ -312,6 +312,14 @@ function jugar() {
           // No hay break, así que el bucle continúa
         }
       }
+    } else if (acertijo === "2") {
+      alert(
+        "LET declara una variable limitada al bloque, función o expresión donde se usa. "
+      );
+      escenaMontania();
+    } else {
+      alert("Opción inválida. Por favor elige 1 o 2.");
+      escenaMontania();
     }
   } // <-- Añadir esta llave para cerrar escenaAcantilado()
   //FINALIZA
