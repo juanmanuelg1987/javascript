@@ -244,7 +244,7 @@ alert("¡Bienvenido " + nombre + "!");
 
 ##  Comparación de Estructuras de Control
 
-![Comparación IF/ELSE, SWITCH/CASE y WHILE]<img width="591" height="225" alt="Screenshot_3" src="https://github.com/user-attachments/assets/fc684841-2167-4528-ae28-d290740d7f0e" />
+![Comparación IF/ELSE, SWITCH/CASE y WHILE]
 
 | Aspecto | IF/ELSE | SWITCH/CASE | WHILE |
 |---------|---------|-------------|-------|
