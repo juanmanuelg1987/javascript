@@ -101,8 +101,8 @@ function jugar() {
     } else if (decision === "2") {
       escenaCueva();
     } else {
-      alert("Opción inválida");
-      escenaPieMontania();
+      alert("Vuelves al menu principal");
+      menuPrincipal()
     }
   }
 
@@ -125,8 +125,8 @@ function jugar() {
     } else if (opcion === "3") {
       escenaPieMontania();
     } else {
-      alert("Opción inválida");
-      escenaMontania();
+      alert("Vuelves al menu principal");
+      menuPrincipal()
     }
   }
 
@@ -143,6 +143,7 @@ function jugar() {
       "3. Salir\n\n" +
       "Elige opción:";
 
+      // " ?  = entonces   ---- "" : = si no  "
     let opcion = prompt(mensaje);
 
     switch (opcion) {
@@ -185,7 +186,7 @@ function jugar() {
 
           if (direccion === "1") {
             alert(
-              "El suelo cede bajo tus pies... ¡Caíste en un pozo profundo! ¡PERDISTE!"
+              "El suelo cede bajo tus pies... ¡Caíste en un pozo profundo! ¡PERDISTE! tu muerte fue la mas rapida, empieza de nuevo y elige otros caminos"
             );
             finalizarJuego();
           } else if (direccion === "2") {
@@ -193,11 +194,13 @@ function jugar() {
               "La brisa te guía hacia la salida. ¡Logras escapar de la cueva!"
             );
             escenaPieMontania();
-          } else {
+          } 
+          // else, si no elige nada, seria elegir cancelar, lo lleva a menuprincipal
+          else {
             alert(
               "No tomas ninguna decisión clara y te pierdes en la oscuridad."
             );
-            mostrarEstado();
+            menuPrincipal();
           }
         }
         break;
@@ -226,7 +229,7 @@ function jugar() {
         "'Cuando quieras mostrar un mensaje en tu página,\n" +
         "yo soy la función que te da el mensaje.\n" +
         "No soy console.log, que en la consola se queda,\n" +
-        "yo aparezco en una ventanita que se vea.'\n\n" +
+        "yo aparezco en una ventanita para que se vea.'\n\n" +
         "1. Prompt\n" +
         "2. Alert\n\n" +
         "Elige tu respuesta:"
@@ -260,7 +263,7 @@ function jugar() {
       escenaPieMontania();
     } else {
       alert(
-        "Respuesta incorrecta. Te quedas atrapado en la cabaña. ¡PERDISTE!"
+        "Respuesta incorrecta. Te quedas atrapado en la cabaña. ¡PERDISTE! tu muerte fue pura agonia, empieza de nuevo y elige otros caminos, La función prompt() en JavaScript muestra una ventana emergente que pide al usuario que ingrese un texto y devuelve lo que escribió como una cadena de texto."
       );
       finalizarJuego();
     }
