@@ -1,5 +1,6 @@
-<img width="591" height="225" alt="Screenshot_3" src="https://github.com/user-attachments/assets/fc684841-2167-4528-ae28-d290740d7f0e" />
 <img width="1060" height="534" alt="Screenshot_2" src="https://github.com/user-attachments/assets/e7f243ea-65d8-4a71-a217-ed32133dfc53" />
+<img width="591" height="225" alt="Screenshot_3" src="https://github.com/user-attachments/assets/fc684841-2167-4528-ae28-d290740d7f0e" />
+
 
 
 Estructuras de Control en JavaScript: Guía Rápida
