@@ -345,7 +345,7 @@ function jugar() {
 }
 
 // Comenzar el juego
-jugar();
+;
 
 //esta funcion es el mensaje final, que va a ser llamado al completar el juego con la antorcha
 //SE LLAMA  FACIL... mostrarLeccionesJavaScript()
