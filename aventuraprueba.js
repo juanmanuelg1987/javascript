@@ -96,14 +96,17 @@ function jugar() {
       } else {
         alert("costo mucho subir! pierdes la mitad de tu energia");
       }
+      
+      
 
       escenaMontania();
     } else if (decision === "2") {
       escenaCueva();
     } else {
-      alert("Vuelves al menu principal");
-      menuPrincipal()
+      alert("elegi 1 o 2 chabon/a");
+      escenaPieMontania()
     }
+    
   }
 
   //ESCENA MONTAÑA
