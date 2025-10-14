@@ -264,11 +264,14 @@ function jugar() {
       // Mostrar estado actualizado
       alert(mostrarEstado() + "¡Ahora tienes una antorcha en tu inventario!");
       escenaPieMontania();
-    } else {
+    } else if (respuesta === "1") {
       alert(
         "Respuesta incorrecta. Te quedas atrapado en la cabaña. ¡PERDISTE! tu muerte fue pura agonia, empieza de nuevo y elige otros caminos, La función prompt() en JavaScript muestra una ventana emergente que pide al usuario que ingrese un texto y devuelve lo que escribió como una cadena de texto."
       );
       finalizarJuego();
+    } else {
+      alert("no busques bugs! ingresa 1 o 2");
+      escenaPieMontania()
     }
   }
 
