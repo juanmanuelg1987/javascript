@@ -37,11 +37,49 @@
     font-family: 'Georgia', serif; /* Fuente más elegante */
     font-size: 3rem;
     text-shadow: 
-      2px 2px 4px rgba(0, 0, 0, 0.8),
-      0 0 20px rgba(255, 215, 0, 0.5); /* Sombra y brillo dorado */
+      2px 2px 4px rgba(0, 0, 0, 0.9),
+      0 0 20px rgba(255, 215, 0, 0.8),
+      0 0 40px rgba(255, 215, 0, 0.5),
+      0 0 60px rgba(255, 140, 0, 0.3); /* Múltiples capas de brillo */
     margin-bottom: 30px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
+    /* Animación de brillo pulsante */
+    animation: glow 2s ease-in-out infinite;
+    /* Efecto 3D con múltiples sombras */
+    text-shadow: 
+      1px 1px 0 #d4af37,
+      2px 2px 0 #c5a028,
+      3px 3px 0 #b69121,
+      4px 4px 0 #a7821a,
+      5px 5px 10px rgba(0, 0, 0, 0.8),
+      0 0 30px rgba(255, 215, 0, 0.8),
+      0 0 50px rgba(255, 140, 0, 0.5);
+  }
+  
+  /* Animación de brillo pulsante */
+  @keyframes glow {
+    0%, 100% {
+      text-shadow: 
+        1px 1px 0 #d4af37,
+        2px 2px 0 #c5a028,
+        3px 3px 0 #b69121,
+        4px 4px 0 #a7821a,
+        5px 5px 10px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(255, 215, 0, 0.8),
+        0 0 50px rgba(255, 140, 0, 0.5);
+    }
+    50% {
+      text-shadow: 
+        1px 1px 0 #d4af37,
+        2px 2px 0 #c5a028,
+        3px 3px 0 #b69121,
+        4px 4px 0 #a7821a,
+        5px 5px 10px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(255, 215, 0, 1),
+        0 0 70px rgba(255, 140, 0, 0.8),
+        0 0 100px rgba(255, 215, 0, 0.4);
+    }
   }
   
   button {
