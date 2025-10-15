@@ -1,130 +1,112 @@
 /* Reset básico para eliminar márgenes por defecto */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background-image: url('https://img.freepik.com/fotos-premium/cofre-oro-cueva-ilustracion-monedas-oro-generada-ia_843560-924.jpg?semt=ais_hybrid&w=740&q=80');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed; /* La imagen se queda fija al hacer scroll */
-    font-family: 'Arial', sans-serif;
-    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* Capa oscura semi-transparente para mejor legibilidad */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
-    z-index: -1;
-  }
-  
-  h1 {
-    color: #ffd700; /* Color dorado para el título */
-    text-align: center;
-    font-family: 'Georgia', serif; /* Fuente más elegante */
-    font-size: 3rem;
-    text-shadow: 
-      2px 2px 4px rgba(0, 0, 0, 0.9),
-      0 0 20px rgba(255, 215, 0, 0.8),
-      0 0 40px rgba(255, 215, 0, 0.5),
-      0 0 60px rgba(255, 140, 0, 0.3); /* Múltiples capas de brillo */
-    margin-bottom: 30px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    /* Animación de brillo pulsante */
-    animation: glow 2s ease-in-out infinite;
-    /* Efecto 3D con múltiples sombras */
-    text-shadow: 
-      1px 1px 0 #d4af37,
-      2px 2px 0 #c5a028,
-      3px 3px 0 #b69121,
-      4px 4px 0 #a7821a,
-      5px 5px 10px rgba(0, 0, 0, 0.8),
-      0 0 30px rgba(255, 215, 0, 0.8),
-      0 0 50px rgba(255, 140, 0, 0.5);
-  }
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("https://img.freepik.com/fotos-premium/cofre-oro-cueva-ilustracion-monedas-oro-generada-ia_843560-924.jpg?semt=ais_hybrid&w=740&q=80");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; /* La imagen se queda fija al hacer scroll */
+  font-family: "Arial", sans-serif;
+  min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Capa oscura semi-transparente para mejor legibilidad */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
+  z-index: -1;
+}
+
+h1 {
+  color: #ffd700; /* Color dorado para el título */
+  text-align: center;
+  font-family: "Georgia", serif; /* Fuente más elegante */
+  font-size: 3rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 215, 0, 0.8),
+    0 0 40px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 140, 0, 0.3); /* Múltiples capas de brillo */
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
   /* Animación de brillo pulsante */
-  @keyframes glow {
-    0%, 100% {
-      text-shadow: 
-        1px 1px 0 #d4af37,
-        2px 2px 0 #c5a028,
-        3px 3px 0 #b69121,
-        4px 4px 0 #a7821a,
-        5px 5px 10px rgba(0, 0, 0, 0.8),
-        0 0 30px rgba(255, 215, 0, 0.8),
-        0 0 50px rgba(255, 140, 0, 0.5);
-    }
-    50% {
-      text-shadow: 
-        1px 1px 0 #d4af37,
-        2px 2px 0 #c5a028,
-        3px 3px 0 #b69121,
-        4px 4px 0 #a7821a,
-        5px 5px 10px rgba(0, 0, 0, 0.8),
-        0 0 40px rgba(255, 215, 0, 1),
-        0 0 70px rgba(255, 140, 0, 0.8),
-        0 0 100px rgba(255, 215, 0, 0.4);
-    }
+  animation: glow 2s ease-in-out infinite;
+  /* Efecto 3D con múltiples sombras */
+  text-shadow: 1px 1px 0 #d4af37, 2px 2px 0 #c5a028, 3px 3px 0 #b69121,
+    4px 4px 0 #a7821a, 5px 5px 10px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 140, 0, 0.5);
+}
+
+/* Animación de brillo pulsante */
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 1px 1px 0 #d4af37, 2px 2px 0 #c5a028, 3px 3px 0 #b69121,
+      4px 4px 0 #a7821a, 5px 5px 10px rgba(0, 0, 0, 0.8),
+      0 0 30px rgba(255, 215, 0, 0.8), 0 0 50px rgba(255, 140, 0, 0.5);
   }
-  
-  button {
-    background: linear-gradient(145deg, #d4af37, #ffd700); /* Gradiente dorado */
-    color: #2c1810; /* Color marrón oscuro para el texto */
-    border: 3px solid #8b6914;
-    padding: 15px 40px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 
-      0 6px 15px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3); /* Sombra y brillo interior */
-    transition: all 0.3s ease; /* Animación suave */
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  50% {
+    text-shadow: 1px 1px 0 #d4af37, 2px 2px 0 #c5a028, 3px 3px 0 #b69121,
+      4px 4px 0 #a7821a, 5px 5px 10px rgba(0, 0, 0, 0.8),
+      0 0 40px rgba(255, 215, 0, 1), 0 0 70px rgba(255, 140, 0, 0.8),
+      0 0 100px rgba(255, 215, 0, 0.4);
   }
-  
-  /* Efecto hover (cuando pasas el mouse por encima) */
-  button:hover {
-    background: linear-gradient(145deg, #ffd700, #ffed4e);
-    transform: translateY(-3px); /* El botón sube un poco */
-    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
-  }
-  
-  /* Efecto active (cuando haces clic) */
-  button:active {
-    transform: translateY(0); /* Vuelve a su posición */
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
-  }
-  
-  /* Responsivo para pantallas pequeñas */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2rem;
-    }
-    
-    button {
-      font-size: 1rem;
-      padding: 12px 30px;
-    }
+}
+
+button {
+  background: linear-gradient(145deg, #d4af37, #ffd700); /* Gradiente dorado */
+  color: #2c1810; /* Color marrón oscuro para el texto */
+  border: 3px solid #8b6914;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3); /* Sombra y brillo interior */
+  transition: all 0.3s ease; /* Animación suave */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Efecto hover (cuando pasas el mouse por encima) */
+button:hover {
+  background: linear-gradient(145deg, #ffd700, #ffed4e);
+  transform: translateY(-3px); /* El botón sube un poco */
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+}
+
+/* Efecto active (cuando haces clic) */
+button:active {
+  transform: translateY(0); /* Vuelve a su posición */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
   }
 
-  #silenciarBtn {
+  button {
+    font-size: 1rem;
+    padding: 12px 30px;
+  }
+}
+
+#silenciarBtn {
   display: flex;
   margin: 80px auto 0 auto;
   padding: 5px 10px;
