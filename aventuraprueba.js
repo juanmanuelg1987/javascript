@@ -396,6 +396,6 @@ window.onload = function() {
       audio.currentTime = 0;
       audio.play();
     }
-    btn.textContent = audio.muted ? 'Activar sonido' : 'Silenciar';
+    btn.textContent = audio.muted ? 'Activar sonido' : 'Shhh!!!';
   };
 };
