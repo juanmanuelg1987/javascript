@@ -386,3 +386,16 @@ function LeerLibroJavascript() {
       "Pero hay una tercera situación: cuando una función no tiene parámetros, igualmente se usan los paréntesis (vacíos) tanto en la definición como en la llamada.\n\n"
   );
 }
+
+window.onload = function() {
+  const audio = document.querySelector('audio');
+  const btn = document.getElementById('silenciarBtn');
+  btn.onclick = function() {
+    audio.muted = !audio.muted;
+    if (!audio.muted) {
+      audio.currentTime = 0;
+      audio.play();
+    }
+    btn.textContent = audio.muted ? 'Activar sonido' : 'Silenciar';
+  };
+};
