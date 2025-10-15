@@ -154,8 +154,8 @@ function jugar() {
     } else if (opcion === "3") {
       escenaPieMontania();
     } else {
-      alert("Vuelves al menu principal");
-      menuPrincipal();
+      alert("Opción inválida. Elige 1, 2 o 3.");
+      escenaMontania();
     }
   }
 
@@ -300,7 +300,7 @@ function jugar() {
     } else {
       playBeep(330, 350);
       alert("no busques bugs! ingresa 1 o 2");
-      escenaPieMontania();
+      mostrarEstado();
     }
   }
 
@@ -321,12 +321,15 @@ function jugar() {
     );
 
     if (acertijo === "1") {
+      playBeep(784, 200);
       alert(
         "¡Correcto! Cruzas el acantilado del SABER y adquieres el TESORO Del Aprendiz."
       );
 
       // Bucle infinito que solo se rompe con respuestas válidas
       while (true) {
+        playBeep(784, 200);
+      
         let buscarCueva = prompt(
           "¡FELICIDADES, HAS GANADO!\n\n" +
             "Pero espera... Has escuchado rumores sobre un tesoro legendario\n" +
@@ -359,7 +362,7 @@ function jugar() {
     } else {
       playBeep(330, 350);
       alert("Opción inválida. Por favor elige 1 o 2.");
-      escenaMontania();
+      escenaAcantilado();
     }
   } // <-- Añadir esta llave para cerrar escenaAcantilado()
   //FINALIZA
@@ -390,6 +393,7 @@ function jugar() {
 //prompt() = ejemplo...  "¿Qué piensas?" 💭
 
 function mostrarLeccionesJavaScript() {
+  playBeep(523, 300);
   alert(
     " LECCIONES DE JAVASCRIPT \n\n" +
       " BREAK:\n" +
