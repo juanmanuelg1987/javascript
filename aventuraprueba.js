@@ -1,3 +1,30 @@
+// sonido
+function playBeep(frequency = 440, duration = 100) {
+  // 1. Crea el contexto de audio
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  // 2. Crea componentes de audio
+  const oscillator = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
+
+  // 3. Conecta los componentes
+  oscillator.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+
+  // 4. Configura el oscilador
+  oscillator.frequency.value = frequency; // Frecuencia del sonido
+  oscillator.type = "sine"; // Tipo de onda (senoidal = sonido puro)
+
+  // 5. Configura el volumen (fade out)
+  gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime); // Volumen inicial
+  gainNode.gain.exponentialRampToValueAtTime(
+    0.01, // Volumen final (casi silencio)
+    audioCtx.currentTime + duration / 1000 // Tiempo final (convertido a segundos)
+  );
+  // 6. Inicia y detiene el sonido
+  oscillator.start(audioCtx.currentTime); // Inicia inmediatamente
+  oscillator.stop(audioCtx.currentTime + duration / 1000); // Programa la parada
+}
+
 let nombre = "";
 let vida = 100;
 let energia = 100;
@@ -14,6 +41,7 @@ function jugar() {
   //COMIENZO
 
   function menuPrincipal() {
+    playBeep(440, 150);
     let opcion = prompt(
       "=== EN BUSQUEDA DEL TESORO ===\n" +
         "1. Comenzar nueva partida\n" +
@@ -79,6 +107,7 @@ function jugar() {
   //ESCENA PIE DE MONTAÑA
 
   function escenaPieMontania() {
+    playBeep(659, 250);
     let decision = prompt(
       mostrarEstado() +
         `${nombre}, te encuentras al pie de una montaña:\n` +
@@ -96,17 +125,14 @@ function jugar() {
       } else {
         alert("costo mucho subir! pierdes la mitad de tu energia");
       }
-      
-      
 
       escenaMontania();
     } else if (decision === "2") {
       escenaCueva();
     } else {
       alert("elegi 1 o 2 chabon/a");
-      escenaPieMontania()
+      escenaPieMontania();
     }
-    
   }
 
   //ESCENA MONTAÑA
@@ -129,7 +155,7 @@ function jugar() {
       escenaPieMontania();
     } else {
       alert("Vuelves al menu principal");
-      menuPrincipal()
+      menuPrincipal();
     }
   }
 
@@ -146,7 +172,7 @@ function jugar() {
       "3. Salir\n\n" +
       "Elige opción:";
 
-      // " ?  = entonces   ---- "" : = si no  "
+    // " ?  = entonces   ---- "" : = si no  "
     let opcion = prompt(mensaje);
 
     switch (opcion) {
@@ -197,7 +223,7 @@ function jugar() {
               "La brisa te guía hacia la salida. ¡Logras escapar de la cueva!"
             );
             escenaPieMontania();
-          } 
+          }
           // else, si no elige nada, seria elegir cancelar, lo lleva a menuprincipal
           else {
             alert(
@@ -239,6 +265,7 @@ function jugar() {
     );
 
     if (respuesta === "2") {
+      playBeep(784, 200);
       alert("¡Correcto! Obtienes una antorcha y la llave para salir.");
       inventario = "antorcha";
 
@@ -265,13 +292,15 @@ function jugar() {
       alert(mostrarEstado() + "¡Ahora tienes una antorcha en tu inventario!");
       escenaPieMontania();
     } else if (respuesta === "1") {
+      playBeep(330, 350);
       alert(
         "Respuesta incorrecta. Te quedas atrapado en la cabaña. ¡PERDISTE! tu muerte fue pura agonia, empieza de nuevo y elige otros caminos, La función prompt() en JavaScript muestra una ventana emergente que pide al usuario que ingrese un texto y devuelve lo que escribió como una cadena de texto."
       );
       finalizarJuego();
     } else {
+      playBeep(330, 350);
       alert("no busques bugs! ingresa 1 o 2");
-      escenaPieMontania()
+      escenaPieMontania();
     }
   }
 
@@ -317,6 +346,7 @@ function jugar() {
           finalizarJuego();
           break; // ← Rompe el bucle
         } else {
+          playBeep(330, 350);
           alert("Opción inválida. Por favor elige 1 o 2.");
           // No hay break, así que el bucle continúa
         }
@@ -327,6 +357,7 @@ function jugar() {
       );
       escenaMontania();
     } else {
+      playBeep(330, 350);
       alert("Opción inválida. Por favor elige 1 o 2.");
       escenaMontania();
     }
@@ -351,8 +382,6 @@ function jugar() {
 }
 
 // Comenzar el juego
-;
-
 //esta funcion es el mensaje final, que va a ser llamado al completar el juego con la antorcha
 //SE LLAMA  FACIL... mostrarLeccionesJavaScript()
 
@@ -387,15 +416,16 @@ function LeerLibroJavascript() {
   );
 }
 
-window.onload = function() {
-  const audio = document.querySelector('audio');
-  const btn = document.getElementById('silenciarBtn');
-  btn.onclick = function() {
+window.onload = function () {
+  const audio = document.querySelector("audio");
+  const btn = document.getElementById("silenciarBtn");
+  audio.volume = 0.1; // de 0.0 (mute) a 1.0 (máximo)
+  btn.onclick = function () {
     audio.muted = !audio.muted;
     if (!audio.muted) {
       audio.currentTime = 0;
       audio.play();
     }
-    btn.textContent = audio.muted ? 'Activar sonido' : 'Shhh!!!';
+    btn.textContent = audio.muted ? "Activar sonido" : "Shhh!!!";
   };
 };
